@@ -1,0 +1,19 @@
+from PIL import Image
+
+def convert_images_to_pdf(image_paths, output_pdf):
+    first_image = Image.open(image_paths[0])
+
+    first_image = first_image.convert('RGB')
+
+    images = []
+    for img_path in image_paths[1:]:
+        img = Image.open(img_path)
+        img = img.convert('RGB')
+        images.append(img)
+
+    first_image.save(output_pdf, save_all=True, append_images=images)
+
+image_paths = ['gambar-01.png','gambar-02.png','gambar-03.png','gambar-04.png','gambar-05.png','gambar-06.png','gambar-07.png']  # Daftar file gambar
+output_pdf = 'gambar.pdf' 
+
+convert_images_to_pdf(image_paths, output_pdf)
